@@ -1,0 +1,13 @@
+@theme {
+  /* Reset default TW colors. */
+  --color-\*: initial;
+
+  --color-current: currentColor;
+  --color-transparent: transparent;
+  --color-black: #161616;
+  --color-white: #f4f3f2;
+  --color-grey: #666666;
+
+  /* Debug only: the G-key grid overlay. */
+  --color-debug: #ff0000;
+}

@@ -1,0 +1,63 @@
+{
+  "site": {
+    "name": "LC96",
+    "description": "Web Developer and Designer based in Belgium",
+    "nav": [{ "label": "Hello World", "href": "/projets/helloworld" }],
+    "socials": [
+      { "label": "Instagram", "href": "https://www.instagram.com/loris_cnti/" }
+    ]
+  },
+  "helloworld": {
+    "title": "Hello World",
+    "description": "Hello World",
+    "who": "My name is Loris and I’m a web developer currently working for an agency in Amsterdam. I mainly develop e-commerce websites, but I also work on portfolio websites from time to time. When I’m not working, I used to spend a lot of time playing video games. Nowadays, I’m also interested in motion design and like experimenting with it when I have some free time.",
+    "why": "I decided to join this program because I’d like to continue my studies and eventually join a Master’s degree in Transmedia.I’ve been working as a web developer for several years, so I already have a lot of experience on the development side. Design, however, is probably my weakest point, so I see this program as a good opportunity to improve my design skills and explore areas I don’t usually work on. And honestly, I was also a bit bored with doing the same things all the time, so I thought it would be a good challenge and a nice way to learn something new."
+  },
+  "projects": [
+    {
+      "title": "Project one",
+      "slug": "project-one",
+      "year": 2026,
+      "client": "School",
+      "role": "Design, development",
+      "tags": ["Web"],
+      "cover": "/images/project-one.jpg"
+    },
+    {
+      "title": "Project two",
+      "slug": "project-two",
+      "year": 2025,
+      "client": "Personal",
+      "role": "Design",
+      "tags": ["Identity"],
+      "cover": "/images/project-two.jpg"
+    },
+    {
+      "title": "Project three",
+      "slug": "project-three",
+      "year": 2025,
+      "client": "School",
+      "role": "Development",
+      "tags": ["Web", "3D"],
+      "cover": "/images/project-three.jpg"
+    },
+    {
+      "title": "Project four",
+      "slug": "project-four",
+      "year": 2024,
+      "client": "Personal",
+      "role": "Design, development",
+      "tags": ["Web"],
+      "cover": "/images/project-four.jpg"
+    },
+    {
+      "title": "Project five",
+      "slug": "project-five",
+      "year": 2024,
+      "client": "School",
+      "role": "Motion",
+      "tags": ["Motion"],
+      "cover": "/images/project-five.jpg"
+    }
+  ]
+}

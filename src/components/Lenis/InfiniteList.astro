@@ -1,0 +1,18 @@
+---
+import "lenis/dist/lenis.css";
+
+type Props = { class?: string };
+
+const { class: className } = Astro.props;
+---
+
+<infinite-list class:list={["scrollbar-invisible block h-full overflow-y-auto", className]} data-lenis-prevent>
+  <div data-content class="overflow-clip lg:span-w-5 lg:ml-auto">
+    <slot />
+    <div data-clones aria-hidden="true"></div>
+  </div>
+</infinite-list>
+
+<script>
+  import "./InfiniteListElement";
+</script>

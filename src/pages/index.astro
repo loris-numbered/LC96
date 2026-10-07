@@ -1,0 +1,73 @@
+---
+import InfiniteList from "~/components/Lenis/InfiniteList.astro";
+import Base from "~/layouts/Base.astro";
+import { projects, site } from "~/lib/data";
+
+const rows = projects.map((p) => ({ title: p.title, href: `/projets/${p.slug}` }));
+---
+
+<Base>
+  <section class="grid h-svh grid-cols-1 grid-rows-[auto_1fr] overflow-clip grid-container lg:grid-rows-1">
+    <div class="pointer-events-none relative z-10 col-start-1 row-start-1 flex flex-col justify-start gap-16 pt-80 lg:w-1/2">
+      <h1 id="home-title" class="font-serif text-20 leading-snug tracking-tight lg:text-60 lg:span-w-5 pointer-events-auto">{site.description}</h1>
+      <!-- <p class="text-14 leading-normal text-grey pointer-events-auto">{site.description}</p> -->
+    </div>
+
+    <InfiniteList class="col-start-1 row-start-2 mask-[linear-gradient(transparent,black_30%,black_70%,transparent)] lg:row-start-1">
+      <ul class="flex origin-right transform-[skewY(calc(var(--velocity,0)*-0.05deg))] flex-col items-start text-left font-serif text-60 leading-narrow tracking-tight lg:text-90 uppercase will-change-transform">
+        {
+          rows.map((row) => (
+            <li>
+              <a href={row.href} class="block text-grey transition-colors hover:text-black focus-visible:text-black py-8">
+                {row.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </InfiniteList>
+  </section>
+</Base>
+
+
+<script>
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  import { transitionRemaining } from "~/lib/transitions";
+
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("astro:page-load", async () => {
+    const title = document.getElementById("home-title");
+
+    if (!title || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    await document.fonts.ready;
+
+    let reveal: gsap.core.Tween | null = null;
+    let revealed = false;
+
+    gsap.set(title, { opacity: 1 });
+
+    SplitText.create(title, {
+      type: "lines",
+      mask: "lines",
+      autoSplit: true,
+      onSplit: (self) => {
+        if (!revealed) {
+          reveal?.kill();
+          reveal = gsap.from(self.lines, { yPercent: 100, duration: 1.4, stagger: 0.2, ease: "expo.out", paused: true, force3D: true });
+        }
+      },
+    });
+
+    const wait = Math.max(0, transitionRemaining() - 900);
+
+    setTimeout(() => {
+      revealed = true;
+      reveal?.play();
+    }, wait);
+  });
+</script>

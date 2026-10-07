@@ -1,0 +1,42 @@
+---
+import "~/styles/tailwind.css";
+import { ClientRouter } from "astro:transitions";
+import Footer from "~/components/Footer.astro";
+import Grid from "~/components/Grid/Grid.astro";
+import Lenis from "~/components/Lenis/Lenis.astro";
+import Nav from "~/components/Nav.astro";
+import { seo } from "~/lib/seo";
+
+type Props = { title?: string | null; description?: string | null };
+
+const meta = seo({ ...Astro.props, path: Astro.url.pathname });
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    {meta.description && <meta name="description" content={meta.description} />}
+    <link rel="canonical" href={meta.canonical} />
+    <meta property="og:title" content={meta.title} />
+    {meta.description && <meta property="og:description" content={meta.description} />}
+    <meta property="og:url" content={meta.canonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Lenis />
+    <Nav />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    {import.meta.env.DEV && <Grid />}
+  </body>
+</html>
+
+<script>
+  import "~/lib/transitions";
+</script>

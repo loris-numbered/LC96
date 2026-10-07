@@ -1,0 +1,96 @@
+html,
+body {
+  @apply bg-white text-black antialiased;
+}
+
+/* The page's scrollbar belongs to <html>: Lenis drives the native scroller, so hiding it there is enough. */
+html {
+  @apply scrollbar-invisible;
+}
+
+body {
+  @apply font-sans text-13 font-medium leading-normal;
+}
+
+img,
+video {
+  @apply block max-w-full select-none;
+}
+
+@layer base {
+  :where(a[href], button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    @apply ring-2 ring-black outline-none;
+  }
+
+  ::selection {
+    @apply bg-black text-white;
+  }
+}
+
+/* Portable Text output (RichText.astro): default elements only, no component of their own. */
+.rich-text {
+  @apply flex flex-col gap-[1em];
+}
+
+.rich-text a {
+  @apply underline underline-offset-4;
+}
+
+.rich-text em {
+  @apply italic;
+}
+
+.rich-text strong {
+  @apply font-bold;
+}
+
+@keyframes page-leave {
+  to {
+    transform: translateY(-25vh);
+    filter: brightness(0.25);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    transform: translateY(10vh);
+  }
+}
+
+::view-transition-old(root) {
+  animation: page-leave 1.75s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+::view-transition-new(root) {
+  animation: page-enter 1.75s cubic-bezier(0.87, 0, 0.13, 1) both;
+}
+
+::view-transition-group(root) {
+  z-index: 1;
+}
+
+::view-transition-old(hero) {
+  display: none;
+}
+
+::view-transition-new(hero) {
+  animation: hero-enter 1.75s cubic-bezier(0.87, 0, 0.13, 1) both;
+}
+
+::view-transition-group(hero) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-new(hero) {
+    animation: none;
+  }
+}

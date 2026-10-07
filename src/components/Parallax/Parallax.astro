@@ -1,0 +1,15 @@
+---
+type Props = { strength?: number; class?: string };
+
+const { strength = 0.2, class: className } = Astro.props;
+---
+
+<parallax-element strength={strength} class:list={["block overflow-clip", className]}>
+  <div data-parallax-target class="h-full w-full will-change-transform">
+    <slot />
+  </div>
+</parallax-element>
+
+<script>
+  import "./ParallaxElement";
+</script>

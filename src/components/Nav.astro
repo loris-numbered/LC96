@@ -1,0 +1,19 @@
+---
+import { site } from "~/lib/data";
+
+const links = site.nav;
+const current = Astro.url.pathname;
+---
+
+<header class="fixed grid-container inset-x-0 top-0 z-10 flex margin-py-1 items-center justify-between text-white mix-blend-difference">
+  <a href="/" class="text-13">{site.name}</a>
+  <nav class="flex gap-24 text-13">
+    {
+      links.map((link) => (
+        <a href={link.href} aria-current={current === link.href ? "page" : undefined} class="aria-[current]:text-grey">
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

@@ -1,0 +1,85 @@
+---
+import Base from "~/layouts/Base.astro";
+import { helloworld } from "~/lib/data";
+---
+
+<Base title="Hello World">
+  <section id="helloworld" class="relative grid-container flex flex-col gap-y-32 lg:gap-24 pt-130 max-lg:pb-48 lg:overflow-clip lg:h-screen">
+    <h1 class="font-serif text-center text-48 lg:text-[18vw] motion-safe:opacity-0 lg:absolute bottom-[-18%] left-0 right-0">
+      Hello World
+    </h1>
+    <!-- <p class="text-16 leading-normal text-grey lg:span-w-10 motion-safe:opacity-0">Every project, in order. Hover a line, open a page.</p> -->
+    <ul class="grid-container flex flex-col gap-y-32 lg:gap-y-60">      
+        <li class="w-full flex max-lg:flex-col max-lg:gap-y-8 lg:flex-row gutter-gap-x-1">
+          <h2 class="motion-safe:opacity-0 text-24 lg:text-48/[1] lg:span-w-6 font-serif">{'Who I am'}</h2>
+          <p class="motion-safe:opacity-0 text-12 lg:text-16 lg:span-w-5 text-grey">{helloworld.who}</p>
+        </li>
+        <li class="w-full flex max-lg:flex-col max-lg:gap-y-8 lg:flex-row gutter-gap-x-1">
+          <h2 class="motion-safe:opacity-0 text-24 lg:text-48/[1] lg:span-w-6 font-serif">{'Why I joined'}</h2>
+          <p class="motion-safe:opacity-0 text-12 lg:text-16 lg:span-w-5 text-grey">{helloworld.why}</p>
+        </li>
+    </ul>
+  </section>
+</Base>
+
+<script>
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  import { transitionRemaining } from "~/lib/transitions";
+
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener("astro:page-load", async () => {
+    const section = document.getElementById("helloworld");
+
+    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    await document.fonts.ready;
+
+    const title = section.querySelector("h1");
+    const paragraphs = section.querySelectorAll("p");
+    const headings = section.querySelectorAll("h2");
+    const headingsText = [...headings,...paragraphs];
+    const timeline = gsap.timeline({ paused: true });
+    let revealed = false;
+
+    gsap.set([title, ...headingsText], { opacity: 1 });
+
+    if (title) {
+      SplitText.create(title, {
+        type: "words, chars",
+        autoSplit: true,
+        mask: "chars",
+        charsClass: "char",
+        onSplit: (self) => {
+          if (!revealed) {
+            timeline.from(self.chars, { duration: 1, yPercent: 120, scale: 1, stagger: 0.01, delay: 0.1, ease: "expo.out" }, 0);
+          }
+        },
+      });
+    }
+
+    for (const text of headingsText) {
+      SplitText.create(text, {
+        type: "lines, words",
+        autoSplit: true,
+        mask: "lines",
+        linesClass: "line",
+        onSplit: (self) => {
+          if (!revealed) {
+            timeline.from(self.lines, { duration: 1.2, yPercent: 105, stagger: 0.04, ease: "expo.out" }, 0.2);
+          }
+        },
+      });
+    }
+
+    const wait = Math.max(0, transitionRemaining() - 900);
+
+    setTimeout(() => {
+      revealed = true;
+      timeline.play();
+    }, wait);
+  });
+</script>

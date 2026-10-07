@@ -1,0 +1,22 @@
+---
+// Debug overlay of the fluid grid, toggled with the G key. Each column reads its index from `--i` for
+// the stagger; the element only flips `is-visible`, the CSS does the rest.
+const COLUMN_COUNT = 24;
+---
+
+<debug-grid class="group pointer-events-none fixed inset-0 isolate z-50" aria-hidden="true" transition:persist>
+  <div class="grid-container gutter-gap-x-1 flex h-full overflow-hidden">
+    {
+      Array.from({ length: COLUMN_COUNT }, (_, i) => (
+        <div
+          style={`--i: ${i}`}
+          class="span-w-1 h-full shrink-0 origin-top scale-y-0 bg-debug/10 transition-transform duration-1200 ease-expo-out [transition-delay:calc(var(--i)*10ms)] group-[.is-visible]:scale-y-100"
+        ></div>
+      ))
+    }
+  </div>
+</debug-grid>
+
+<script>
+  import "./GridElement";
+</script>

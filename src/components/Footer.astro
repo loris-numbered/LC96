@@ -1,0 +1,10 @@
+---
+import { site } from "~/lib/data";
+---
+
+<footer class="lg:fixed lg:bottom-0 lg:inset-x-0 flex gap-16 grid-container margin-py-1 text-12 text-grey flex-row justify-between">
+  <span>© {new Date().getFullYear()} {site.name}</span>
+  <div class="flex gap-24">
+    {site.socials.map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}
+  </div>
+</footer>
