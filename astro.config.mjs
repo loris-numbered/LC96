@@ -13,7 +13,7 @@ export default defineConfig({
   devToolbar: { enabled: false },
   env: {
     schema: {
-      PUBLIC_SITE_URL: envField.string({ context: "client", access: "public", url: true }),
+      PUBLIC_SITE_URL: envField.string({ context: "client", access: "public", url: true, optional: true }),
     },
   },
   vite: { plugins: [tailwindcss()] },

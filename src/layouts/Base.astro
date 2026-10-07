@@ -9,7 +9,7 @@ import { seo } from "~/lib/seo";
 
 type Props = { title?: string | null; description?: string | null };
 
-const meta = seo({ ...Astro.props, path: Astro.url.pathname });
+const meta = seo({ ...Astro.props, url: Astro.url });
 ---
 
 <!doctype html>

@@ -22,3 +22,4 @@ dist/
 
 # Vercel (build output + linked project metadata)
 .vercel
+.env*
