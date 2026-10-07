@@ -1,7 +1,7 @@
 ---
-// Debug overlay of the fluid grid, toggled with the G key. Each column reads its index from `--i` for
-// the stagger; the element only flips `is-visible`, the CSS does the rest.
-const COLUMN_COUNT = 24;
+import tailwind from "../../../tailwind.config.mjs";
+
+const COLUMN_COUNT = Math.max(...Object.values(tailwind.theme.grid).map((g) => g.columns));
 ---
 
 <debug-grid class="group pointer-events-none fixed inset-0 isolate z-50" aria-hidden="true" transition:persist>

@@ -33,7 +33,8 @@ const meta = seo({ ...Astro.props, url: Astro.url });
       <slot />
     </main>
     <Footer />
-    {import.meta.env.DEV && <Grid />}
+    <Grid/>
+    <!-- {import.meta.env.DEV && <Grid />} -->
   </body>
 </html>
 
