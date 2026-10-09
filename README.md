@@ -3,6 +3,8 @@
 Portfolio built with [Astro](https://astro.build). Content lives in `src/data.json` for now; a CMS can
 replace it later behind `src/lib/data.ts`.
 
+Website url: lorisconti.be
+
 ## Stack
 
 - Astro 7, server-rendered, deployed on Vercel.
