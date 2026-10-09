@@ -4,19 +4,19 @@ import { helloworld } from "~/lib/data";
 ---
 
 <Base title="Hello World">
-  <section id="helloworld" class="relative grid-container flex flex-col gap-y-32 lg:gap-24 pt-130 max-lg:pb-48 lg:overflow-clip lg:h-screen">
-    <h1 class="font-serif text-center text-48 lg:text-[18vw] motion-safe:opacity-0 lg:absolute bottom-[-18%] left-0 right-0">
+  <section id="helloworld" class="relative grid-container flex flex-col gap-y-32 lg:gap-24 pt-130 max-lg:pb-48 lg:overflow-clip lg:min-h-screen">
+    <h1 class="font-serif font-thin tracking-tight text-center text-60 lg:text-[18vw] motion-safe:opacity-0 lg:absolute bottom-[-18%] left-0 right-0">
       Hello World
     </h1>
     <!-- <p class="text-16 leading-normal text-grey lg:span-w-10 motion-safe:opacity-0">Every project, in order. Hover a line, open a page.</p> -->
     <ul class="grid-container flex flex-col gap-y-32 lg:gap-y-60">      
         <li class="w-full flex max-lg:flex-col max-lg:gap-y-8 lg:flex-row gutter-gap-x-1">
-          <h2 class="motion-safe:opacity-0 text-24 lg:text-48/[1] lg:span-w-6 font-serif">{'Who I am'}</h2>
-          <p class="motion-safe:opacity-0 text-12 lg:text-16 lg:span-w-5 text-grey">{helloworld.who}</p>
+          <h2 class="motion-safe:opacity-0 text-24/[1.1] lg:text-48/[1] lg:span-w-6 font-serif">{'Who I am'}</h2>
+          <p class="motion-safe:opacity-0 text-14 lg:text-16 lg:span-w-5 text-grey">{helloworld.who}</p>
         </li>
         <li class="w-full flex max-lg:flex-col max-lg:gap-y-8 lg:flex-row gutter-gap-x-1">
-          <h2 class="motion-safe:opacity-0 text-24 lg:text-48/[1] lg:span-w-6 font-serif">{'Why I joined'}</h2>
-          <p class="motion-safe:opacity-0 text-12 lg:text-16 lg:span-w-5 text-grey">{helloworld.why}</p>
+          <h2 class="motion-safe:opacity-0 text-24/[1.1] lg:text-48/[1] lg:span-w-6 font-serif">{'Why I joined'}</h2>
+          <p class="motion-safe:opacity-0 text-14 lg:text-16 lg:span-w-5 text-grey">{helloworld.why}</p>
         </li>
     </ul>
   </section>
@@ -55,7 +55,7 @@ import { helloworld } from "~/lib/data";
         charsClass: "char",
         onSplit: (self) => {
           if (!revealed) {
-            timeline.from(self.chars, { duration: 1, yPercent: 120, scale: 1, stagger: 0.01, delay: 0.1, ease: "expo.out" }, 0);
+            timeline.from(self.chars, { duration: 1.2, yPercent: 120, scale: 1, stagger: 0.01, delay: 0.2, ease: "expo.out" }, 0);
           }
         },
       });

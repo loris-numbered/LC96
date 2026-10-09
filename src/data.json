@@ -4,7 +4,7 @@
     "description": "Web Developer and Designer based in Belgium",
     "nav": [{ "label": "Hello World", "href": "/projets/helloworld" }],
     "socials": [
-      { "label": "Instagram", "href": "https://www.instagram.com/loris_cnti/" }
+      { "label": "Github", "href": "https://github.com/loris-numbered" }
     ]
   },
   "helloworld": {

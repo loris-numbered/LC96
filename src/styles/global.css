@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  @apply font-sans text-13 font-medium leading-normal;
+  @apply font-sans text-13 font-normal leading-normal;
 }
 
 img,
@@ -25,6 +25,20 @@ video {
   ::selection {
     @apply bg-black text-white;
   }
+}
+
+.link-underline {
+  @apply relative inline-block pb-2 outline-offset-8;
+  @apply before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:bg-current before:origin-left before:scale-x-0 before:transition-transform before:duration-700 before:ease-[cubic-bezier(0.65,0,0.35,1)] before:delay-0;
+  @apply after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-current after:origin-right after:scale-x-100 after:transition-transform after:duration-700 after:ease-[cubic-bezier(0.65,0,0.35,1)] after:delay-200;
+  @apply hover:before:scale-x-100 hover:before:delay-200 hover:after:scale-x-0 hover:after:delay-0;
+  @apply focus-visible:before:scale-x-100 focus-visible:before:delay-200 focus-visible:after:scale-x-0 focus-visible:after:delay-0;
+}
+
+.link-underline-reverse {
+  @apply relative inline-block pb-2 outline-offset-8;
+  @apply after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-current after:origin-right after:scale-x-0 after:transition-transform after:duration-700 after:ease-[cubic-bezier(0.65,0,0.35,1)];
+  @apply hover:after:origin-left hover:after:scale-x-100 focus-visible:after:origin-left focus-visible:after:scale-x-100;
 }
 
 /* Portable Text output (RichText.astro): default elements only, no component of their own. */
